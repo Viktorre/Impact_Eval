@@ -1,0 +1,672 @@
+------------------------------------------------------------------------------
+      name:  <unnamed>
+       log:  C:\Users\fx236\Downloads\Tutorial_1\test.log
+  log type:  text
+ opened on:   2 Nov 2021, 15:27:08
+
+. 
+. 
+. ////////////////////////////////////////////////////////////////////////////
+> ////
+> ** Basic description of data 
+. ////////////////////////////////////////////////////////////////////////////
+> ////
+> 
+. 
+. *Creation of the dataset
+. set obs 100 //Set the number of observations to 100
+number of observations (_N) was 0, now 100
+
+. 
+. *Let's generate 100 normally distributed random numbers with a mean of 1000 
+> and an std of 500:
+. gen var1 = rnormal(1000, 500) in 1/100 
+
+. 
+. *Then generate a second normally distributed variable with a mean of 3000 an
+> d an std of 1000, your turn:
+. gen var2 = rnormal(3000, 100) in 1/100 
+
+. 
+. *Let's look at our data. Mean and Std correspond to the parameters set befor
+> e.
+. 
+. summarize var1
+
+    Variable |        Obs        Mean    Std. Dev.       Min        Max
+-------------+---------------------------------------------------------
+        var1 |        100    953.4179    521.5273  -567.4374   2220.785
+
+. 
+. *However, it would be interesting to have a bit more information about the v
+> ariable 
+. summarize var1, detail
+
+                            var1
+-------------------------------------------------------------
+      Percentiles      Smallest
+ 1%    -438.3508      -567.4374
+ 5%     16.14054      -309.2641
+10%     278.6298      -103.9714       Obs                 100
+25%     637.6126      -34.16048       Sum of Wgt.         100
+
+50%     917.0547                      Mean           953.4179
+                        Largest       Std. Dev.      521.5273
+75%     1330.576       1844.769
+90%     1670.154       1899.166       Variance       271990.7
+95%     1796.128       2064.979       Skewness      -.1897328
+99%     2142.882       2220.785       Kurtosis       3.160209
+
+. *The detail behind the "," is an option. Most Stata commands allow for optio
+> n. If you want to check them out for e. g. summarize: 
+. help summarize //the help command directs you to the user guide of each comm
+> and 
+
+. 
+. *Let's look at var2:
+. sum var2, d //stata also allows abbreviations if the abbreviation is unique
+
+                            var2
+-------------------------------------------------------------
+      Percentiles      Smallest
+ 1%     2743.041       2723.798
+ 5%     2835.363       2762.283
+10%     2864.836       2788.507       Obs                 100
+25%     2931.801       2823.924       Sum of Wgt.         100
+
+50%     2989.658                      Mean           2992.361
+                        Largest       Std. Dev.       98.7935
+75%     3052.385        3173.22
+90%     3116.145       3188.657       Variance       9760.156
+95%     3159.652       3200.652       Skewness      -.0493148
+99%     3226.599       3252.546       Kurtosis       3.013983
+
+. 
+. list var1 var2 in 1/20 //look at the first 20 observations of your variables
+
+     +----------------------+
+     |      var1       var2 |
+     |----------------------|
+  1. | -567.4374   2788.507 |
+  2. |  968.3991   2918.494 |
+  3. |  1844.769   2842.362 |
+  4. |  1366.732   2985.679 |
+  5. |  836.6967   2938.222 |
+     |----------------------|
+  6. |  686.3928   3005.383 |
+  7. |  954.4324   2865.206 |
+  8. |  378.7983    3037.85 |
+  9. |  300.2832   3077.316 |
+ 10. |  4.531559   2966.398 |
+     |----------------------|
+ 11. |  556.1416   3024.958 |
+ 12. |  703.8762   2891.386 |
+ 13. |  1411.137   3110.656 |
+ 14. |  630.3689   3013.328 |
+ 15. |  879.5394   3033.192 |
+     |----------------------|
+ 16. |  638.1694   2975.189 |
+ 17. |  1775.977   2970.801 |
+ 18. | -309.2641   3048.027 |
+ 19. |  1054.821   2950.535 |
+ 20. |  1196.094    3068.44 |
+     +----------------------+
+
+. 
+. *We would like to have a global view of our dataset. Stata allows to scroll 
+> through the dataset:
+. browse //look at your dataset
+
+. 
+. *We can also select what we want to see: 
+. browse var1 
+
+. 
+. describe //lets you see your variables and their types. E.g. float is for nu
+> mbers, string is for characters (words). 
+
+Contains data
+  obs:           100                          
+ vars:             2                          
+------------------------------------------------------------------------------
+              storage   display    value
+variable name   type    format     label      variable label
+------------------------------------------------------------------------------
+var1            float   %9.0g                 
+var2            float   %9.0g                 
+------------------------------------------------------------------------------
+Sorted by: 
+     Note: Dataset has changed since last saved.
+
+. codebook //This command produces a 'codebook' of the dataset in memory. This
+>  is especially useful when we are using external datasets 
+
+------------------------------------------------------------------------------
+var1                                                               (unlabeled)
+------------------------------------------------------------------------------
+
+                  type:  numeric (float)
+
+                 range:  [-567.43744,2220.7847]       units:  1.000e-07
+         unique values:  100                      missing .:  0/100
+
+                  mean:   953.418
+              std. dev:   521.527
+
+           percentiles:        10%       25%       50%       75%       90%
+                            278.63   637.613   917.055   1330.58   1670.15
+
+------------------------------------------------------------------------------
+var2                                                               (unlabeled)
+------------------------------------------------------------------------------
+
+                  type:  numeric (float)
+
+                 range:  [2723.7981,3252.5459]        units:  .0001
+         unique values:  100                      missing .:  0/100
+
+                  mean:   2992.36
+              std. dev:   98.7935
+
+           percentiles:        10%       25%       50%       75%       90%
+                           2864.84    2931.8   2989.66   3052.39   3116.15
+
+. * so that we can make sure the data has been extracted correctly. Also offer
+> s useful summary of the variable
+. 
+. tab var1 //shows the variable on the screen, but similar values are not show
+> n twice [tab= tabulate]
+
+       var1 |      Freq.     Percent        Cum.
+------------+-----------------------------------
+  -567.4374 |          1        1.00        1.00
+  -309.2641 |          1        1.00        2.00
+  -103.9714 |          1        1.00        3.00
+  -34.16048 |          1        1.00        4.00
+   4.531559 |          1        1.00        5.00
+   27.74953 |          1        1.00        6.00
+   93.64061 |          1        1.00        7.00
+   221.2394 |          1        1.00        8.00
+   247.5108 |          1        1.00        9.00
+   256.9763 |          1        1.00       10.00
+   300.2832 |          1        1.00       11.00
+   314.3632 |          1        1.00       12.00
+   376.1732 |          1        1.00       13.00
+   378.7983 |          1        1.00       14.00
+   465.5831 |          1        1.00       15.00
+    481.637 |          1        1.00       16.00
+   486.1803 |          1        1.00       17.00
+   556.1416 |          1        1.00       18.00
+   584.1592 |          1        1.00       19.00
+   603.9734 |          1        1.00       20.00
+   607.2308 |          1        1.00       21.00
+    620.575 |          1        1.00       22.00
+   621.8804 |          1        1.00       23.00
+   630.3689 |          1        1.00       24.00
+   637.0559 |          1        1.00       25.00
+   638.1694 |          1        1.00       26.00
+    646.035 |          1        1.00       27.00
+   660.0922 |          1        1.00       28.00
+   686.3928 |          1        1.00       29.00
+   697.1047 |          1        1.00       30.00
+   703.8762 |          1        1.00       31.00
+   709.7446 |          1        1.00       32.00
+   732.9503 |          1        1.00       33.00
+   733.4408 |          1        1.00       34.00
+    757.707 |          1        1.00       35.00
+   815.5092 |          1        1.00       36.00
+   819.4584 |          1        1.00       37.00
+   832.6454 |          1        1.00       38.00
+   836.6967 |          1        1.00       39.00
+   858.0081 |          1        1.00       40.00
+   863.0834 |          1        1.00       41.00
+   877.6711 |          1        1.00       42.00
+   879.5394 |          1        1.00       43.00
+   879.9407 |          1        1.00       44.00
+   879.9684 |          1        1.00       45.00
+   884.1304 |          1        1.00       46.00
+    900.661 |          1        1.00       47.00
+   902.4482 |          1        1.00       48.00
+   908.2078 |          1        1.00       49.00
+   911.2662 |          1        1.00       50.00
+   922.8433 |          1        1.00       51.00
+   942.6119 |          1        1.00       52.00
+   943.3796 |          1        1.00       53.00
+   952.8103 |          1        1.00       54.00
+   954.4324 |          1        1.00       55.00
+   968.3991 |          1        1.00       56.00
+   970.5721 |          1        1.00       57.00
+   993.8188 |          1        1.00       58.00
+   1018.519 |          1        1.00       59.00
+   1047.191 |          1        1.00       60.00
+   1054.821 |          1        1.00       61.00
+   1065.857 |          1        1.00       62.00
+   1149.298 |          1        1.00       63.00
+   1150.262 |          1        1.00       64.00
+   1162.234 |          1        1.00       65.00
+    1186.41 |          1        1.00       66.00
+   1196.094 |          1        1.00       67.00
+   1204.525 |          1        1.00       68.00
+   1227.265 |          1        1.00       69.00
+   1228.631 |          1        1.00       70.00
+   1257.125 |          1        1.00       71.00
+   1271.697 |          1        1.00       72.00
+   1282.836 |          1        1.00       73.00
+   1306.643 |          1        1.00       74.00
+   1328.062 |          1        1.00       75.00
+   1333.089 |          1        1.00       76.00
+   1337.853 |          1        1.00       77.00
+   1354.027 |          1        1.00       78.00
+   1358.249 |          1        1.00       79.00
+   1366.732 |          1        1.00       80.00
+    1403.91 |          1        1.00       81.00
+   1408.818 |          1        1.00       82.00
+   1411.137 |          1        1.00       83.00
+   1416.524 |          1        1.00       84.00
+   1426.355 |          1        1.00       85.00
+   1489.986 |          1        1.00       86.00
+   1506.575 |          1        1.00       87.00
+   1510.826 |          1        1.00       88.00
+   1526.794 |          1        1.00       89.00
+   1659.608 |          1        1.00       90.00
+   1680.701 |          1        1.00       91.00
+   1721.584 |          1        1.00       92.00
+   1728.785 |          1        1.00       93.00
+   1775.977 |          1        1.00       94.00
+    1781.06 |          1        1.00       95.00
+   1811.195 |          1        1.00       96.00
+   1844.769 |          1        1.00       97.00
+   1899.166 |          1        1.00       98.00
+   2064.979 |          1        1.00       99.00
+   2220.785 |          1        1.00      100.00
+------------+-----------------------------------
+      Total |        100      100.00
+
+. 
+. count //this command counts the number of observations in the dta. You can a
+> lso see it directly on the screen (Observations)
+  100
+
+. 
+. //check for missings
+. 
+. 
+. ////////////////////////////////////////////////////////////////////////////
+> ////
+> *** Data manipulation - the basics 
+. ////////////////////////////////////////////////////////////////////////////
+> ////
+> 
+. *We already saw how to generate new variables. Now it's your turn to create 
+> a variable that is the sum of our two variables: 
+. gen test = var1 + var2
+
+. 
+. *Not so useful, let's drop it:
+. drop test //deletes the variable
+
+. 
+. *Generate a variable entirely filled with missing values 
+. gen test = . //"." means empty
+(100 missing values generated)
+
+.  
+. *Alternative way of dropping variables:
+. keep var1 var2 //keeps only those, drops test again.
+
+. 
+. *** Using conditions:
+. *Creating a variable of missings again:
+. gen var3 = .
+(100 missing values generated)
+
+. *Replace the values taken by our variable based on a condition: 
+. replace var3 = 1 if var3==. //replaces all the missing values with 1
+(100 real changes made)
+
+. replace var3 = 2 in 51/100 //replaces the last 50 obs of test with a 2 - !!!
+> not good practice but useful here for the simulation
+(50 real changes made)
+
+. *Rename our variable:
+. rename var3 sex 
+
+. 
+. *Labels are very useful to add descriptions. You can label variables, and va
+> lues taken by variables:
+. label define sex1 1 "male"
+
+. label define sex1 2 "female", add
+
+. label variable sex "Sex of respondent" 
+
+. tab sex
+
+     Sex of |
+ respondent |      Freq.     Percent        Cum.
+------------+-----------------------------------
+          1 |         50       50.00       50.00
+          2 |         50       50.00      100.00
+------------+-----------------------------------
+      Total |        100      100.00
+
+. 
+. 
+. label values sex sex1
+
+. tab sex
+
+     Sex of |
+ respondent |      Freq.     Percent        Cum.
+------------+-----------------------------------
+       male |         50       50.00       50.00
+     female |         50       50.00      100.00
+------------+-----------------------------------
+      Total |        100      100.00
+
+. //// MORE ABOUT TAB COMMAND?? 
+> 
+. *Now we gerenate an income variable which corresponds to var1 for females an
+> d var2 for males:
+. gen income  = var1
+
+. replace income = var2 if sex== 1 // the if condition is frequently used and 
+> very important
+(50 real changes made)
+
+. 
+. *Label your income variable:
+. label variable income "Income of respondent"
+
+. 
+. *Let's look at our income variable
+. codebook income
+
+------------------------------------------------------------------------------
+income                                                    Income of respondent
+------------------------------------------------------------------------------
+
+                  type:  numeric (float)
+
+                 range:  [-103.97135,3170.627]        units:  1.000e-06
+         unique values:  100                      missing .:  0/100
+
+                  mean:   2000.33
+              std. dev:   1044.92
+
+           percentiles:        10%       25%       50%       75%       90%
+                           629.468   947.711   2426.74   2984.85   3058.31
+
+. *Notice any issue? Some values are negative. Let's get rid of them:
+. . drop if income < 0
+(1 observation deleted)
+
+. 
+. *Who earns more: men or women? 
+. bysort sex: sum income //we can now see that men are earning more than women
+> .
+
+------------------------------------------------------------------------------
+-> sex = male
+
+    Variable |        Obs        Mean    Std. Dev.       Min        Max
+-------------+---------------------------------------------------------
+      income |         50    2984.616    86.99723   2788.507   3170.627
+
+------------------------------------------------------------------------------
+-> sex = female
+
+    Variable |        Obs        Mean    Std. Dev.       Min        Max
+-------------+---------------------------------------------------------
+      income |         49     1038.91    446.3266   27.74953   2064.979
+
+
+. //bysort command is very useful: Most Stata commands allow the by prefix, wh
+> ich repeats the command for each group of observations for which the values 
+> of the variables in varlist are the same. "bysort" tells stata to first sort
+>  the data by gender
+. tab income sex 
+
+ Income of |   Sex of respondent
+respondent |      male     female |     Total
+-----------+----------------------+----------
+  27.74953 |         0          1 |         1 
+  247.5108 |         0          1 |         1 
+  256.9763 |         0          1 |         1 
+  465.5831 |         0          1 |         1 
+   481.637 |         0          1 |         1 
+  486.1803 |         0          1 |         1 
+  584.1592 |         0          1 |         1 
+  607.2308 |         0          1 |         1 
+  621.8804 |         0          1 |         1 
+  637.0559 |         0          1 |         1 
+   646.035 |         0          1 |         1 
+  709.7446 |         0          1 |         1 
+  732.9503 |         0          1 |         1 
+  733.4408 |         0          1 |         1 
+  815.5092 |         0          1 |         1 
+  832.6454 |         0          1 |         1 
+  877.6711 |         0          1 |         1 
+  879.9684 |         0          1 |         1 
+  884.1304 |         0          1 |         1 
+   900.661 |         0          1 |         1 
+  902.4482 |         0          1 |         1 
+  908.2078 |         0          1 |         1 
+  922.8433 |         0          1 |         1 
+  942.6119 |         0          1 |         1 
+  952.8103 |         0          1 |         1 
+  993.8188 |         0          1 |         1 
+  1047.191 |         0          1 |         1 
+  1149.298 |         0          1 |         1 
+  1162.234 |         0          1 |         1 
+   1186.41 |         0          1 |         1 
+  1204.525 |         0          1 |         1 
+  1271.697 |         0          1 |         1 
+  1282.836 |         0          1 |         1 
+  1306.643 |         0          1 |         1 
+  1328.062 |         0          1 |         1 
+  1333.089 |         0          1 |         1 
+  1354.027 |         0          1 |         1 
+  1358.249 |         0          1 |         1 
+   1403.91 |         0          1 |         1 
+  1408.818 |         0          1 |         1 
+  1416.524 |         0          1 |         1 
+  1426.355 |         0          1 |         1 
+  1510.826 |         0          1 |         1 
+  1526.794 |         0          1 |         1 
+  1680.701 |         0          1 |         1 
+  1721.584 |         0          1 |         1 
+  1811.195 |         0          1 |         1 
+  1899.166 |         0          1 |         1 
+  2064.979 |         0          1 |         1 
+  2788.507 |         1          0 |         1 
+  2828.363 |         1          0 |         1 
+  2842.362 |         1          0 |         1 
+    2851.5 |         1          0 |         1 
+  2854.752 |         1          0 |         1 
+  2864.467 |         1          0 |         1 
+  2865.206 |         1          0 |         1 
+  2878.408 |         1          0 |         1 
+  2891.386 |         1          0 |         1 
+  2900.636 |         1          0 |         1 
+  2918.494 |         1          0 |         1 
+  2923.219 |         1          0 |         1 
+  2938.222 |         1          0 |         1 
+  2938.316 |         1          0 |         1 
+  2948.717 |         1          0 |         1 
+  2950.332 |         1          0 |         1 
+  2950.535 |         1          0 |         1 
+  2950.963 |         1          0 |         1 
+  2957.237 |         1          0 |         1 
+  2964.563 |         1          0 |         1 
+  2966.398 |         1          0 |         1 
+  2970.801 |         1          0 |         1 
+  2975.189 |         1          0 |         1 
+   2977.95 |         1          0 |         1 
+  2984.013 |         1          0 |         1 
+  2985.679 |         1          0 |         1 
+  2988.764 |         1          0 |         1 
+  2993.495 |         1          0 |         1 
+  2996.622 |         1          0 |         1 
+  3005.383 |         1          0 |         1 
+  3013.328 |         1          0 |         1 
+  3019.557 |         1          0 |         1 
+  3024.958 |         1          0 |         1 
+  3033.192 |         1          0 |         1 
+   3036.69 |         1          0 |         1 
+   3037.85 |         1          0 |         1 
+  3041.751 |         1          0 |         1 
+  3043.218 |         1          0 |         1 
+  3048.027 |         1          0 |         1 
+  3048.178 |         1          0 |         1 
+   3068.44 |         1          0 |         1 
+  3068.775 |         1          0 |         1 
+  3077.316 |         1          0 |         1 
+  3079.393 |         1          0 |         1 
+  3098.139 |         1          0 |         1 
+  3099.029 |         1          0 |         1 
+  3110.656 |         1          0 |         1 
+  3112.537 |         1          0 |         1 
+  3148.677 |         1          0 |         1 
+  3170.627 |         1          0 |         1 
+-----------+----------------------+----------
+     Total |        50         49 |        99 
+
+. 
+. *Your turn: generate or change the income variable so that women earn more t
+> han men on average
+. replace income = var1 if sex==1
+(50 real changes made)
+
+. replace income = var2 if sex==0
+(0 real changes made)
+
+. *Check your results: 
+. bysort sex: sum income
+
+------------------------------------------------------------------------------
+-> sex = male
+
+    Variable |        Obs        Mean    Std. Dev.       Min        Max
+-------------+---------------------------------------------------------
+      income |         50    890.7837    565.9156  -567.4374   2220.785
+
+------------------------------------------------------------------------------
+-> sex = female
+
+    Variable |        Obs        Mean    Std. Dev.       Min        Max
+-------------+---------------------------------------------------------
+      income |         49     1038.91    446.3266   27.74953   2064.979
+
+
+. 
+. *Let's check how gender and income are correlated:
+. corr sex income
+(obs=99)
+
+             |      sex   income
+-------------+------------------
+         sex |   1.0000
+      income |   0.1451   1.0000
+
+
+. pwcorr sex income //this command keeps missing values when computing the cor
+> relation
+
+             |      sex   income
+-------------+------------------
+         sex |   1.0000 
+      income |   0.1451   1.0000 
+
+. 
+. *Use the help command to display stars when computing correlations:
+. pwcorr sex income, ...
+option ... not allowed
+r(198);
+
+end of do-file
+
+r(198);
+
+. do "C:\Users\fx236\AppData\Local\Temp\85\STD2b5c_000000.tmp"
+
+. pwcorr sex income //this command keeps missing values when computing the cor
+> relation
+
+             |      sex   income
+-------------+------------------
+         sex |   1.0000 
+      income |   0.1451   1.0000 
+
+. 
+end of do-file
+
+. do "C:\Users\fx236\AppData\Local\Temp\85\STD2b5c_000000.tmp"
+
+. *** Conditional subsetting 
+. * We now only want to keep income below a certain threshold: 
+. drop if income <= 500
+(16 observations deleted)
+
+. *And above a certain threshold: 
+. drop if income >= 3000
+(0 observations deleted)
+
+. 
+end of do-file
+
+. do "C:\Users\fx236\AppData\Local\Temp\85\STD2b5c_000000.tmp"
+
+. forvalues i = 1/2 { // i wird 1 und 2 sein im loop
+  2. 
+. gen income_`i' = income if sex==`i'
+  3. 
+. }
+(43 missing values generated)
+(40 missing values generated)
+
+. 
+end of do-file
+
+. browse income_1
+
+. browse income_1
+
+. do "C:\Users\fx236\AppData\Local\Temp\85\STD2b5c_000000.tmp"
+
+. forvalues i = 1/2 { // i wird 1 und 2 sein im loop
+  2. 
+. gen income_`i' = income if sex==`i'
+  3. 
+. }
+variable income_1 already defined
+r(110);
+
+end of do-file
+
+r(110);
+
+. drop income_1^
+^ invalid name
+r(198);
+
+. drop income_1
+
+. do "C:\Users\fx236\AppData\Local\Temp\85\STD2b5c_000000.tmp"
+
+. forvalues i = 1/2 { // i wird 1 und 2 sein im loop
+  2. 
+. gen income_`i' = income if sex==`i'
+  3. 
+. }
+(43 missing values generated)
+variable income_2 already defined
+r(110);
+
+end of do-file
+
+r(110);
+
+. browse income_1
+
+. exit, clear
