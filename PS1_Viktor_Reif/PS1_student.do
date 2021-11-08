@@ -188,12 +188,18 @@ foreach var in occupation grade union hours tenure {
 	}
 	
 // Q5: According to this sample, is there a !!significant!! difference in hourly wage between married and single people? 
-// Is there also a significant difference in terms of usual hours worked? 
-// Can you think of an explanation for these results? 
-skip for now
+// Is there also a significant difference in terms of usual hours worked?
+// Can you think of an explanation for these results?  
+ttest hours, by(married)
+// Yes, the ttest finds a significant difference in hours worked between married True/False in the sample.
+// A possible explanation could be that married people are more likely to have children, which is time consuming and many parents therefore reduce their work hours.
+
 // Q6: Is there a significant difference between people that were never married and those that were? 
-// Are these results in line with what you found for Q5? How many individuals are divorced? 
-skip
+// Are these results in line with what you found for Q5? How many individuals are divorced?
+ttest hours, by(never_married)
+// Yes, the ttest finds a significant difference in hours worked between never_married True/False in the sample.
+codebook id if married == 0 & never_married == 0
+// There are 443 individuals in the sample that are not married at the moment but have been married before.
 // Q7: Check the distribution of hourly wages in this country using a graph. What can you say? 
 histogram wage
 // Hourly wages seem to follow a rather normal distribution with a positve skew. I expected a cleaner cutoff on the left hand side of the distribution with many people earning the same low wage and nobody below, but this is not the case. I assume 1 wage unit equals 10$. Therefore, there are only a few indivuduals earning the minimum wage, if there is any. 
@@ -211,10 +217,11 @@ regress married wage
 regress married wage hours
 // When controlling for hours worked, the regression analysis finds no significant relation between wage and married in this sample. 
 // Q10: Create a graph that represents the relationship between the average hourly wage and the 
-// average usual hours worked for each occupation. (Hint: collapse function might be useful here)  
-collapse (occupation) 
-scatter wage hours
-
+// average usual hours worked for each occupation. (Hint: collapse function might be useful here) 
+preserve 
+collapse avg_wage = wage avg_hours = hours, by(occupation)
+scatter avg_wage avg_hours 
+restore
 ////////////////////////////////////////////////////////////////////////////////
 *** Part 2 (5pt): Questions about Baird et al. 2011 - Cash or conditions? Evidence 
 *** from a cash transfer experiment
@@ -222,7 +229,9 @@ scatter wage hours
 ////////////////////////////////////////////////////////////////////////////////
 
 // Q1 (1pt): What is the research question the authors address in their paper?
+the paper assesses the role of conditionality in cash transfer programs
 // Why is it relevant? 
+articleassesses the roleof conditionalityincashtransferprograms
 
 // Q2 (2pt): Explain the difference between conditional cash transfers and unconditional cash transfers.
 // What are the advantages and disadvantages of both transfers? (2pts)
