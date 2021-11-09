@@ -199,10 +199,10 @@ ttest hours, by(married)
 ttest hours, by(never_married)
 // Yes, the ttest finds a significant difference in hours worked between never_married True/False in the sample.
 codebook id if married == 0 & never_married == 0
-// There are 443 individuals in the sample that are not married at the moment but have been married before.
+// There are 443 individuals in the sample that are not married at the moment but have been married before. Ie they are divored.
 // Q7: Check the distribution of hourly wages in this country using a graph. What can you say? 
 histogram wage
-// Hourly wages seem to follow a rather normal distribution with a positve skew. I expected a cleaner cutoff on the left hand side of the distribution with many people earning the same low wage and nobody below, but this is not the case. I assume 1 wage unit equals 10$. Therefore, there are only a few indivuduals earning the minimum wage, if there is any. 
+// Hourly wages seem to follow a rather normal distribution with a positve skew. I expected a cleaner cutoff on the left hand side of the distribution with many people earning the same low wage and nobody below, but this is not the case. I assume 1 wage unit equals 10$. Therefore, there are only a few indivuduals earning the minimum wage - if there is any. 
 // Check how many individuals in the sample earn more than 40$ per hour. Which occupation 
 // is the most frequent among these individuals? 
 codebook idcode if wage>4
@@ -229,14 +229,21 @@ restore
 ////////////////////////////////////////////////////////////////////////////////
 
 // Q1 (1pt): What is the research question the authors address in their paper?
-the paper assesses the role of conditionality in cash transfer programs
+the paper assesses the impact of conditionality in cash transfer programs in third world countries
 // Why is it relevant? 
-articleassesses the roleof conditionalityincashtransferprograms
-
+Both CCT (conditional cash transfer) and UCT (unconditional cash transfer) are commonly used in development aid for third world countries. For both there is cientific evidence that they significantly improve the receiving households situation. The authors want to show in an experiment which works better, as this a question that is not yet fully answered by research.
 // Q2 (2pt): Explain the difference between conditional cash transfers and unconditional cash transfers.
+The UCT gives money to poor households without any conditions. The CCT ties the money transfer to certain condtions which the households need to fulfill in order to receive the transfer. In the case of this study the condition is school attendance of the respective houshold's children. 
 // What are the advantages and disadvantages of both transfers? (2pts)
-
+The advantages of UCT are that they are easy to administrate/distribute, they are well established and are less variant in outcome compared to CCT, whose conditions could lead to yet unknown effects. The disadvantage of UCT is that there might be opportunity costs when using them, as there is research that claims that using CCT would be beeter.
+The advantages of CCT are that they are generally more accepted by middle/higher class voters (net transfers payers). Also, the conditions in CCT have the potential to countersteer an underinvestment in education/health. Another advantage is that - as some researcher claim - CCT outperforms UCT, meaning that with the same resources households could be helped to improve their situation even more when usning CCT instead of UCT.
+The disadvantages are that CCT waste more resources on administration and the imposed conditions' effects on households are not yet fully known  and therefore a risk.
 // Q3 (2pt): According to the authors, why is there a significant reduction in teen pregnancies and marriage in 
 // the UCT arm but no significant effect in the CCT arm?  
+UCT lead to more financial resources in the receiving households. These resources are at least partly invested in the childrens' education, which increases their school attendance and total schooling years. This development keeps children for a longer time away from transtioning to aduldts, which thusly leads to later marriages and fewer teen pregnancies.
+In the UCT groups, the households that had cases of teen pregnancies/marriage were commonly the ones that dropped out of the program.
+For CCT, the experiment could not find a significant reduction in teen pregnancies and marriage. In the CCT group exactly the households which did not fulfill the attendance criterion showed almost all cases of teen pregnancies and marriage. This means that the girls that dropped out of school and thusly out of the CCT program were the ones who married/got children early. Hence, the effect of UCT, ie more money leads to higher school attendance and thusly to less teen pregnancies/marriage, could no be harnessed by those "dropout" households. The effect on the girls that stayed in school was negligable. The behaviour and outcome of these two groups - namely the dropouts and non-dropouts - leads to no significant reduction in the CCT group.
+
+
 
 
