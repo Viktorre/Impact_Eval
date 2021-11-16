@@ -3368,3 +3368,81 @@ end of do-file
 . 
 end of do-file
 
+. do "C:\Users\fx236\AppData\Local\Temp\113\STD97a4_000000.tmp"
+
+. 
+. hist price, saving(price)
+(bin=14, start=50, width=23.785714)
+(file price.gph saved)
+
+. 
+end of do-file
+
+. do "C:\Users\fx236\AppData\Local\Temp\113\STD97a4_000000.tmp"
+
+. 
+. scatter price distance , saving(pricescatter) ///
+>  ms(O) msize(small) mlw(thick) mcolor(navy*0.6) ///
+>  xlab(0(1)7, grid) ylab(000(50)400, grid) ///
+>  xtitle("Distance to city center (miles)") ///
+>  ytitle("Hotel price(US dollars)") ///
+>  || lfit price distance, lw(thick) lc(green) legend(off)  ///
+>  graphregion(fcolor(white) ifcolor(none))  ///
+>  plotregion(fcolor(white) ifcolor(white))
+(file pricescatter.gph saved)
+
+. 
+. 
+. scatter lnprice distance , saving(lnpricescatter) ///
+>  ms(O) msize(small) mlw(thick) mcolor(navy*0.6) ///
+>  xlab(0(1)7, grid) ylab(3.5(0.50)6, grid) ///
+>  xtitle("Distance to city center (miles)") ///
+>  ytitle("ln(hotel price in US dollars)") ///
+>  || lfit lnprice distance, lw(thick) lc(dkgreen) legend(off)  ///
+>  graphregion(fcolor(white) ifcolor(none))  ///
+>  plotregion(fcolor(white) ifcolor(white))
+variable lnprice not found
+r(111);
+
+end of do-file
+
+r(111);
+
+. do "C:\Users\fx236\AppData\Local\Temp\113\STD97a4_000000.tmp"
+
+. regress price distance 
+
+      Source |       SS           df       MS      Number of obs   =       207
+-------------+----------------------------------   F(1, 205)       =     38.20
+       Model |  57679.7093         1  57679.7093   Prob > F        =    0.0000
+    Residual |   309545.17       205  1509.97644   R-squared       =    0.1571
+-------------+----------------------------------   Adj R-squared   =    0.1530
+       Total |  367224.879       206  1782.64504   Root MSE        =    38.858
+
+------------------------------------------------------------------------------
+       price |      Coef.   Std. Err.      t    P>|t|     [95% Conf. Interval]
+-------------+----------------------------------------------------------------
+    distance |  -14.40642   2.330932    -6.18   0.000    -19.00209   -9.810746
+       _cons |    132.017   4.473528    29.51   0.000     123.1969     140.837
+------------------------------------------------------------------------------
+
+. 
+. * Fig 7.5
+. *** SCATTERPLOT + REGRESSION LINE
+. 
+. scatter price distance , saving(main) ///
+>  ms(O) msize(small) mlw(thick) mcolor(navy*0.8) ///
+>  xlab(0(1)7, grid) ylab(000(50)400, grid) ///
+>  xtitle("Distance to city center (miles)") ///
+>  ytitle("Price(US dollars)") ///
+>  || lfit price distance, lw(thick) lc(green) legend(off)  /// This adds the fitted line to t
+> he scatter plot 
+>  graphregion(fcolor(white) ifcolor(none))  ///
+>  plotregion(fcolor(white) ifcolor(white))
+file main.gph already exists
+r(602);
+
+end of do-file
+
+r(602);
+

@@ -403,7 +403,7 @@ gr combine main.gph residuals.gph // Combining both plots
 **NEED TO ADD STUFF HERE** WHY IS IT COMMON 
 
 * Let's generate a new variable that takes the logarithm of prices
-gen lnprice = ln(price)
+gen lnprice = ln(price) //GETS VAR CLOSER TO NORMAL DIST
 
 * run and compare regressions	
 reg price distance, r
