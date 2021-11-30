@@ -1,0 +1,217 @@
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+      name:  <unnamed>
+       log:  C:\Users\fx236\Documents\impact_eval\Impact_Eval\Tutorial_3\tut3.log
+  log type:  text
+ opened on:  30 Nov 2021, 14:10:23
+
+. 
+. 
+. ////////////////////////////////////////////////////////////////////////////////
+> *** PART 1 : Correlation vs Causality - Demonstration using HISP data
+. ////////////////////////////////////////////////////////////////////////////////
+> 
+. ** Using data from HISP - Health Insurance Subsidy Program - fictional data of a program implemented to reduce the burden of health-related **out-of-pocket** expenditures
+>  for low income households. 
+. use "$path\data\HISP.dta", clear
+(Household Roster (households with completed interview))
+
+. 
+. * Descriptive Stats
+. **==========    
+. ** Use HISP data: 
+.         * Check the variables: 
+.                 describe, fullnames
+
+Contains data from C:\Users\fx236\Documents\impact_eval\Impact_Eval\Tutorial_3\data\HISP.dta
+  obs:        19,827                          Household Roster (households with completed interview)
+ vars:            22                          9 Feb 2017 15:34
+                                              (_dta has notes)
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+              storage   display    value
+variable name   type    format     label      variable label
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+locality_identifier
+                float   %9.0g                 Locality identifier
+household_identifier
+                float   %9.0g                 Unique household identifier
+treatment_locality
+                float   %9.0g                 Household is located in treatment community (0=no, 1=yes)
+promotion_locality
+                float   %9.0g                 Household is located in promoted community (0=no, 1=yes)
+eligible        float   %9.0g                 Household eligible to enroll in HISP (0=no, 1=yes)
+enrolled        float   %9.0g                 HH enrolled in HISP (0=no, 1=yes)
+enrolled_rp     float   %9.0g                 Household enrolled in HISP under the random promotion scenario (0=no, 1=yes)
+poverty_index   float   %9.0g                 Poverty Index 1-100
+round           float   %9.0g                 Survey round (0 = baseline; 1 = follow-up)
+health_expenditures
+                float   %9.0g                 Out of pocket health expenditures (per person per year)
+age_hh          float   %9.0g                 Age of the head of the household (in years)
+age_sp          float   %9.0g                 Age of the spouse (in years)
+educ_hh         float   %9.0g                 Education of the head of household (completed years of schooling)
+educ_sp         float   %9.0g                 Education of the spouse (completed years of schooling)
+female_hh       float   %9.0g                 Head of the household is a woman (0=no, 1=yes)
+indigenous      float   %9.0g                 Head of household speaks an indigenous language (0=no, 1=yes)
+hhsize          float   %9.0g                 Number of household members (baseline)
+dirtfloor       byte    %8.0g                 Home has a dirt floor at baseline (0=no, 1=yes)
+bathroom        byte    %8.0g                 Home with private bathroom at baseline (0=no, 1=yes)
+land            byte    %9.0g                 Number of hectares of land owned by household at baseline
+hospital_distance
+                double  %11.0g                Distance to closest hospital
+hospital        float   %9.0g                 HH member visited hospital in the past year (0=no, 1=yes)
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Sorted by: 
+
+. 
+.         * Summarize to have an overview of our variable 
+.                 summarize 
+
+    Variable |        Obs        Mean    Std. Dev.       Min        Max
+-------------+---------------------------------------------------------
+locality_i~r |     19,827    73.93347     55.0765          1        200
+household_~r |     19,827    8038.973    4569.481          2      15778
+treatment_~y |     19,827    .5002774    .5000125          0          1
+promotion_~y |     19,827    .5126847    .4998517          0          1
+    eligible |     19,827    .5677611    .4953996          0          1
+-------------+---------------------------------------------------------
+    enrolled |     19,827    .2990367    .4578475          0          1
+ enrolled_rp |     19,827    .2932869    .4552803          0          1
+poverty_in~x |     19,827    56.78957    10.68611   20.47913        100
+       round |     19,827    .5000252    .5000126          0          1
+health_exp~s |     19,827    17.03509    9.291581          0   116.8306
+-------------+---------------------------------------------------------
+      age_hh |     19,827    46.68312    15.29482         14         88
+      age_sp |     19,827    40.58173     12.8227         14         88
+     educ_hh |     19,827     2.83355    2.754713          0         16
+     educ_sp |     19,827    2.618601    2.543279          0         17
+   female_hh |     19,827    .0990568    .2987459          0          1
+-------------+---------------------------------------------------------
+  indigenous |     19,827    .3529026    .4778848          0          1
+      hhsize |     19,827    5.178645     2.19515          1         13
+   dirtfloor |     19,827    .6036213    .4891571          0          1
+    bathroom |     19,827    .6159782    .4863754          0          1
+        land |     19,827     2.07974    3.133202          0         23
+-------------+---------------------------------------------------------
+hospital_d~e |     19,827    105.3225    42.06348   9.465392   170.4576
+    hospital |     11,257     .052323    .2226875          0          1
+
+.                 summarize health_expenditures, detail
+
+      Out of pocket health expenditures (per person per
+                            year)
+-------------------------------------------------------------
+      Percentiles      Smallest
+ 1%            0              0
+ 5%     3.456479              0
+10%     7.442618              0       Obs              19,827
+25%     11.62167              0       Sum of Wgt.      19,827
+
+50%     16.05168                      Mean           17.03509
+                        Largest       Std. Dev.      9.291581
+75%      21.2377       105.2404
+90%     26.96251       111.2483       Variance       86.33347
+95%     31.41306        114.035       Skewness       1.917036
+99%     49.68515       116.8306       Kurtosis       13.37525
+
+. 
+end of do-file
+
+. do "C:\Users\fx236\AppData\Local\Temp\34\STDf050_000000.tmp"
+
+.                 set scheme plotplain
+scheme plotplain not found
+r(111);
+
+end of do-file
+
+r(111);
+
+. ssc install plotplain
+ssc install: "plotplain" not found at SSC, type search plotplain
+(To find all packages at SSC that start with p, type ssc describe p)
+r(601);
+
+. ssc install schemepack
+checking schemepack consistency and verifying not already installed...
+installing into C:\Users\fx236\ado\plus\...
+installation complete.
+
+. do "C:\Users\fx236\AppData\Local\Temp\34\STDf050_000000.tmp"
+
+.                 set scheme plotplain
+scheme plotplain not found
+r(111);
+
+end of do-file
+
+r(111);
+
+. do "C:\Users\fx236\AppData\Local\Temp\34\STDf050_000000.tmp"
+
+.                 summarize 
+
+    Variable |        Obs        Mean    Std. Dev.       Min        Max
+-------------+---------------------------------------------------------
+locality_i~r |     19,827    73.93347     55.0765          1        200
+household_~r |     19,827    8038.973    4569.481          2      15778
+treatment_~y |     19,827    .5002774    .5000125          0          1
+promotion_~y |     19,827    .5126847    .4998517          0          1
+    eligible |     19,827    .5677611    .4953996          0          1
+-------------+---------------------------------------------------------
+    enrolled |     19,827    .2990367    .4578475          0          1
+ enrolled_rp |     19,827    .2932869    .4552803          0          1
+poverty_in~x |     19,827    56.78957    10.68611   20.47913        100
+       round |     19,827    .5000252    .5000126          0          1
+health_exp~s |     19,827    17.03509    9.291581          0   116.8306
+-------------+---------------------------------------------------------
+      age_hh |     19,827    46.68312    15.29482         14         88
+      age_sp |     19,827    40.58173     12.8227         14         88
+     educ_hh |     19,827     2.83355    2.754713          0         16
+     educ_sp |     19,827    2.618601    2.543279          0         17
+   female_hh |     19,827    .0990568    .2987459          0          1
+-------------+---------------------------------------------------------
+  indigenous |     19,827    .3529026    .4778848          0          1
+      hhsize |     19,827    5.178645     2.19515          1         13
+   dirtfloor |     19,827    .6036213    .4891571          0          1
+    bathroom |     19,827    .6159782    .4863754          0          1
+        land |     19,827     2.07974    3.133202          0         23
+-------------+---------------------------------------------------------
+hospital_d~e |     19,827    105.3225    42.06348   9.465392   170.4576
+    hospital |     11,257     .052323    .2226875          0          1
+
+.                 summarize health_expenditures, detail
+
+      Out of pocket health expenditures (per person per
+                            year)
+-------------------------------------------------------------
+      Percentiles      Smallest
+ 1%            0              0
+ 5%     3.456479              0
+10%     7.442618              0       Obs              19,827
+25%     11.62167              0       Sum of Wgt.      19,827
+
+50%     16.05168                      Mean           17.03509
+                        Largest       Std. Dev.      9.291581
+75%      21.2377       105.2404
+90%     26.96251       111.2483       Variance       86.33347
+95%     31.41306        114.035       Skewness       1.917036
+99%     49.68515       116.8306       Kurtosis       13.37525
+
+.                 
+.                 set scheme plotplain
+scheme plotplain not found
+r(111);
+
+end of do-file
+
+r(111);
+
+. do "C:\Users\fx236\AppData\Local\Temp\34\STDf050_000000.tmp"
+
+.                 set scheme economist //plotplain
+
+.                 hist health_expenditures //right-skewed - long tail on the right 
+(bin=42, start=0, width=2.781682)
+
+. 
+end of do-file
+

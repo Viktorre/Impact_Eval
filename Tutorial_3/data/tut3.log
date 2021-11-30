@@ -1,0 +1,49 @@
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+      name:  <unnamed>
+       log:  C:\Users\fx236\Documents\impact_eval\Impact_Eval\Tutorial_3\data\tut3.log
+  log type:  text
+ opened on:  30 Nov 2021, 14:09:23
+
+. 
+end of do-file
+
+. do "C:\Users\fx236\AppData\Local\Temp\34\STDf050_000000.tmp"
+
+. use "$path\data\HISP.dta", clear
+file C:\Users\fx236\Documents\impact_eval\Impact_Eval\Tutorial_3\data\data\HISP.dta not found
+r(601);
+
+end of do-file
+
+r(601);
+
+. do "C:\Users\fx236\AppData\Local\Temp\34\STDf050_000000.tmp"
+
+. 
+. ////////////////////////////////////////////////////////////////////////////////
+> *** Setting your working environment 
+. ////////////////////////////////////////////////////////////////////////////////
+> 
+. 
+. clear all //clears your memory and everything in it
+
+. set more off //set more on, which is the default, tells Stata to wait until you press a key before continuing when a -more- message is displayed
+
+. // set more off tells Stata not to pause or display the more message; it is useful when you work with large datasets. 
+. // Normally, Stata pauses to display output after a certain number of lines and waits for any key to be pressed in order to continue; 
+. // we do not want that and want Stata to run smoothly without interruption.
+. 
+. 
+. *Global macros: create a shortcut to be used later on. For instance, you may want to create a computer path
+. global path = "C:\Users\fx236\Documents\impact_eval\Impact_Eval\Tutorial_3"
+
+. cd "$path" //to call a global  just add a dollar sign in front of the global name. Here $path
+C:\Users\fx236\Documents\impact_eval\Impact_Eval\Tutorial_3
+
+. dir //view the files in your directory
+  <dir>  11/30/21 14:07  .                 
+  <dir>  11/30/21 14:07  ..                
+  <dir>  11/30/21 14:09  data              
+  19.5k  11/30/21 13:21  tut3_students.do  
+
+. capture log close
