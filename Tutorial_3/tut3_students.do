@@ -33,7 +33,7 @@ set more off //set more on, which is the default, tells Stata to wait until you 
 
 
 *Global macros: create a shortcut to be used later on. For instance, you may want to create a computer path
-global path = "C:\Users\Robert\Documents\Teaching\Impact Evaluation\Tutorial 3"
+global path = "C:\Users\fx236\Documents\impact_eval\Impact_Eval\Tutorial_3"
 cd "$path" //to call a global  just add a dollar sign in front of the global name. Here $path
 dir //view the files in your directory
 capture log close
@@ -57,7 +57,7 @@ use "$path\data\HISP.dta", clear
 		summarize 
 		summarize health_expenditures, detail
 		
-		set scheme plotplain
+		set scheme economist //plotplain
 		hist health_expenditures //right-skewed - long tail on the right 
 
 	* Number of villages? 
@@ -70,7 +70,7 @@ use "$path\data\HISP.dta", clear
 		sum villages_treated
 
 	*Number of untreated villages? 
-		....
+		codebook household_identifier
 	
 	* Number of hh? Before treatment ? After treatment ? Number of treated hh ? Number of non treated hh in treated villages? 
 		
