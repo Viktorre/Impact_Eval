@@ -26,9 +26,9 @@ cd "$path"
 capture log close
 log using "ps2.log", replace
 use "namelist.dta", clear
-browse
+//browse // I use browse to get familiar with the data...
 use "schoolvar.dta"
-browse
+//browse
 
 
 *** b)
@@ -58,15 +58,34 @@ gen clean = 0
 replace clean=1 if clean_98_15==1
 
 *** f)
-
+//collapse converts the dataset in memory into a dataset of means, sums, medians, etc. clist must refer to numeric variables exclusively
+//collapse absent_share bloodst_98_58 often_sick malaria_98_48 clean 
+collapse sex elg98 stdgap yrbirth wgrp* absent_share bloodst_98_58 often_sick malaria_98_48 clean (count) number_pupils=pupid, by (schid) 
+bys wgrp: summ sex elg98 stdgap yrbirth absent_share bloodst_98_58 often_sick malaria_98_48 clean [aweight=number_pupils] 
 
 *** g)
-
+foreach var in sex elg98 stdgap yrbirth absent_share bloodst_98_58 often_sick malaria_98_48 { 
+	regress `var' wgrp1 wgrp2 [aweight=number_pupils] 
+		} 
 
 *** h)
-
+clear
+use "schoolvar.dta"
+bys wgrp: summ mk96_s distlake pup_pop latr_pup z_inf98 pop1_3km_updated pop1_36k_updated popT_3km_updated popT_36k_updated 
+// regress `var' wgrp  does not work because stata does not understand categorical variables. I use dummies but omit category 3
+gen wgrp_1 = (wgrp==1) 
+gen wgrp_2 = (wgrp==2) 
+foreach var in mk96_s distlake pup_pop latr_pup z_inf98 pop1_3km_updated pop1_36k_updated popT_3km_updated popT_36k_updated { 
+			regress `var' wgrp_1 wgrp_2 
+		} 
 
 *** i)
 
 
 *** j)
+
+
+
+
+
+
