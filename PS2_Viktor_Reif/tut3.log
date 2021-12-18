@@ -1,0 +1,48 @@
+--------------------------------------------------------------------------------------------------------------------------------------------------------
+      name:  <unnamed>
+       log:  C:\Users\fx236\Documents\impact_eval\Impact_Eval\PS2_Viktor_Reif\tut3.log
+  log type:  text
+ opened on:  12 Dec 2021, 12:36:08
+
+. 
+. 
+. ////////////////////////////////////////////////////////////////////////////////
+> *** PART 1 : Correlation vs Causality - Demonstration using HISP data
+. ////////////////////////////////////////////////////////////////////////////////
+
+end of do-file
+
+. do "C:\Users\fx236\AppData\Local\Temp\10\STD3654_000000.tmp"
+
+. ////////////////////////////////////////////////////////////////////////////////
+> /* Impact Evaluations for Social Programs
+> 
+> ////////////////////////////////////////////////////////////////////////////////
+> / Problem Set 2
+> ////////////////////////////////////////////////////////////////////////////////
+> 
+> / Author: Viktor Reif
+> / Heidelberg University - Winter Semester 2021
+>  */
+. ////////////////////////////////////////////////////////////////////////////////
+> 
+. 
+. 
+. ////////////////////////////////////////////////////////////////////////////////
+> *** I - Replicating Table 1
+. ////////////////////////////////////////////////////////////////////////////////
+> 
+. ***a) i)
+. //We want to show that the groups are similar to prove that heterogeneity between groups cannot bias ou results.
+. ***a) ii)
+. clear all 
+
+. set more off
+
+. 
+. global path = "C:\Users\fx236\Documents\impact_eval\Impact_Eval\PS2_Viktor_Reif"
+
+. cd "$path" 
+C:\Users\fx236\Documents\impact_eval\Impact_Eval\PS2_Viktor_Reif
+
+. capture log close
