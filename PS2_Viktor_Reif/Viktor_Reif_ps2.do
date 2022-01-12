@@ -98,7 +98,9 @@ foreach var in mk96_s distlake pup_pop latr_pup z_inf98 pop1_3km_updated pop1_36
 		} 
 
 *** i)
-// After playing around with the stata export options, I decided to copy the results directly from the console into an excel file.
+// After playing around with the stata export options, I decided to copy the results directly from the console into an excel file. For group differences, the respective row below the estimated value shows the robust standard errors.
+
+//failed attempts:
 	//estimates store reg 
 	
 	//ereturn list //Let's look at what we stored 
@@ -113,9 +115,6 @@ foreach var in mk96_s distlake pup_pop latr_pup z_inf98 pop1_3km_updated pop1_36
 	//mtitles("base"  "1-Daylag" "1-Day lead"  "all")	
 	
 *** j)
-// My results are very similar to the ones presented in the original paper, thus that its main findings can be confirmed when seeing my results. Small deviations might be found due to some uncertainties on my side. For example I do not know whether the authors used the overall schoolid or the schoolid of certain years in some parts of the analysis. Also, I might have some small specification errors, in that case due to a typing error.
-
-
-
+// My results are very similar to the ones presented in the original paper, thus that its main findings can be confirmed considering my results. Small deviations might be found due to some uncertainties on my side. For example I do not know whether the authors used the overall schoolid or the schoolid of certain years in some parts of the analysis. Also, I might have some small specification errors, in that case due to a typing error.
 
 
