@@ -1,0 +1,211 @@
+\documentclass[11pt]{article}
+\usepackage[hmargin=2cm,vmargin=2cm]{geometry}
+\usepackage{natbib}
+\usepackage[english]{babel}
+\usepackage{graphicx}
+\usepackage{amstext}
+\usepackage{setspace}
+\usepackage{threeparttable}
+\usepackage{subfigure}
+\usepackage{booktabs}
+\usepackage{rotating}
+\usepackage{float}
+\usepackage{fancybox}
+\usepackage{xcolor}
+\usepackage{array,color}
+\usepackage{dcolumn}
+\usepackage[font=small,labelfont=bf]{caption}
+\usepackage{longtable}
+\usepackage{verbatim}
+\usepackage{pdflscape}
+\usepackage{amssymb}
+\usepackage{lscape}
+\usepackage{tabularx}
+\usepackage{verbatim}
+\usepackage{geometry}
+\usepackage{bbold}
+\usepackage{apalike}
+%\usepackage{hyperref}
+\usepackage{mathtools}
+\usepackage{amsmath}
+\usepackage{color,soul}
+\usepackage{bibentry}
+\usepackage{pxfonts}
+\usepackage{palatino}
+\usepackage{authblk}
+\usepackage{enumitem}
+\usepackage[toc,page]{appendix}
+\usepackage{chngcntr}
+\usepackage[utf8]{inputenc}
+\usepackage{pdflscape}
+\usepackage{float}
+\setlength{\parindent}{1cm}
+\setlength{\parskip}{2mm}
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\title{Table and Figures for Problem Set 3}
+\author{Bohnet, Kuklau, Reif}
+\date{\today}
+
+
+\begin{document}
+\maketitle
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Section 1: 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+
+\begin{center}
+	{
+		\begin{table}[ht]
+		\centering
+		\caption{SAMPLE DESIGN AND RESPONSE RATES}\label{t_main}
+		\setlength{\tabcolsep}{2.5pt}
+		\begin{tabular}{@{}lccc@{}}
+			\toprule \toprule
+			 & \multicolumn{3}{c}{Stores in:} \\
+			\cmidrule{2-4}
+			& All & MJ & PA \\   \cmidrule{1-4}
+			\emph{Wave 1, February 15-March 4, 1992:} \\
+			\\
+			Number of stores in sample frame: & 415 & 335 & 80\\
+			Number of refusals: & 5 & 4 & 1\\
+			Number interviewed: & 410 & 331 & 79\\
+			Response rate (percentage): & 86.7 & 90.9 & 72.5\\
+			\\
+			\emph{Wave 2, November 5 - December 31, 1992:} \\
+			\\
+			Number of stores in sample frame: & 410 & 331 & 79\\
+			Number closed: & 6 & 5 & 1\\
+			Number under rennovation: & 2 & 2 & 0\\
+			Number temporarily closed: & 0 & 0 & 0\\
+			Number of refusals: & 1 & 1 & 0\\
+			Number interviewed: & 401 & 325 & 78\\
+			\bottomrule
+			\multicolumn{4}{l}{\footnotesize{\textit{Notes:} See details on p. 774. of original paper.}}
+		\end{tabular}
+	\end{table}	
+
+	}
+\end{center}
+
+Interpretation: The purpose of this table is to showcase distribution and quality of the sample for the analysis. This sample is survey data and as it can be seen in the table we have a rather complete data set and almost no refusals.
+
+
+\begin{center}
+			{
+%das {H} zwint den table hier zu erscheinen. sonst kommt der text davor
+\begin{table}{H}[ht]
+	\centering
+	\caption{MEANS OF KEY VARIABLES}\label{t_main}
+	\setlength{\tabcolsep}{2.5pt}
+	\begin{tabular}{@{}lccc@{}}
+		\toprule \toprule
+		\multicolumn{3}{r}{Stores in:} & \\
+		\cmidrule{2-4}
+		& NJ & PA & t \\   \cmidrule{1-4}
+		1. \emph{Distribution of Store Types (percentages):} \\
+		\\
+		a. Burger King & 44.3 & 41.1 & .7\\
+		b. KFC & 15.2 & 20.5 & -1.5\\
+		c. Roy Rogers & 21.5 & 24.8 & -.9\\
+		d. Wendy's & 19 & 13.6 & 1.7\\
+		e. Company-owned & 35.4 & 34.1 & .3\\
+		\\
+		2. \emph{Means in Wave 1:} \\
+		\\
+		a. FTE employment & 10.2 & 10.2 & 2.3\\
+		& (10.78) & (7.96) &\\
+		b. Percentage full-time employees & .3 & .3 & .6\\
+		& (.24) & (.23) & \\
+		c. Starting wage & 4.6 & 4.6 & .4\\
+		& (.35) & (.35) & \\
+		d. Wage = 4.25 (percentage) & 100 & 100 & .\\
+		& (0) & (0) &\\
+		e. Price of full meal Number of refusals: & 3 & 3.4 & -3.8\\
+		& (.6) & (.64) & \\
+		f. Hours open & 14.5 & 14.4 & .3\\
+		& (2.95) & (2.78) & \\
+		g. Recruiting bonus &  &  & \\
+		& () & () & \\
+		\\
+		3. \emph{Means in Wave 2:} \\
+		\\
+		a. FTE employment & 10.2 & 7.7 & 2.3\\
+		& (10.78) & (7.96) & \\
+		b. Percentage full-time employees & .3 & .3 & .6\\
+		& (.24) & (.23) & \\
+		c. Starting wage & 4.6 & 4.6 & .4\\
+		& (.35) & (.35) & \\
+		d. Wage = 4.25 (perecntage) & 1 & 1 & .\\
+		& (0) & (0) &\\
+		e. Wage = 5.05 (perecntage) & 1 & 1 & .\\
+		& (0) & (0) &\\
+		f. Price of full meal Number of refusals: & 3 & 3.4 & -3.8\\
+		& (.6) & (.64) & \\
+		g. Hours open & 14.5 & 14.4 & .3\\
+		& (2.95) & (2.78) &\\
+		h. Recruiting bonus &  &  & \\
+		& () & () &\\
+		\bottomrule
+		\multicolumn{4}{l}{\footnotesize{\textit{Notes:} Standard errors are shown in parentheses. See details on p. 776.}}
+	\end{tabular}
+\end{table}
+
+		}
+		
+\end{center}
+
+\newpage Interpretation: The purpose of this table is simply to give the reader an idea what the most important variables in the dataset are and to statistically summarize (distribution and mean) them.		
+
+\begin{center}
+	{	
+	\begin{table}[ht]	
+		\centering
+		\caption{AVERAGE EMPLOYMENT PER STORE BEFORE AND AFTER THE IN NEW JERSEY MINIMUM WAGE}\label{t_main}
+		\setlength{\tabcolsep}{2.5pt}
+		\begin{tabular}{lcccccccc}
+			\toprule \toprule
+			& \multicolumn{3}{c}{Stores by state} & \multicolumn{3}{c}{Stores in New Jersey} &  \multicolumn{2}{c}{Differences in NJ}   \\
+			\cmidrule(lr){2-4} \cmidrule(lr){5-7} \cmidrule(lr){8-9}
+			&   &   & Difference, & Wage = & Wage = & Wage = & Low- & Midrange- \\
+			& PA & NJ & NJ-PA & \$4.25 & \$4.26-\$4.99 & \$5 & high & high \\ 
+			Variable & (i) & (ii) & (iii) & (iv) & (v) & (vi) & (vii) & (viii) \\
+			\midrule
+			1. FTE employment before, & 20.01 & 17.12 & -2.89 & 20.54 & 19.28 & 20.48 & 0.07 & -1.2 \\
+			all available observations & (1.34) & (0.49) & (0.84) & (1.93) & (2.18) & (2.93) & (1.0) & (0.75) \\
+			2. FTE employment after, & 17.75 & 17.91 & 0.16 & 16.96 & 18.63 & 17.33 & -0.35 & 1.31 \\
+			all available observations  & (0.9) & (0.5) & (0.41) & (1.71) & (1.46) & (1.92) & (0.21) & (0.46) \\
+			3. Change in mean FTE & -2.2 & 0.54 & 2.7 & -1.93 & -2.15 & -2.62 & 0.68 & 0.46 \\
+			employment & (1.27) & (0.48) & (0.79) & (1.8) & (2.25) & (2.75) & (0.95) & (0.5) \\
+			4. Change in mean FTE & -2.49 & 0.45 & 2.94 & -2.34 & -2.16 & -2.62 & 0.28 & 0.45 \\
+			employment, balanced & (1.24) & (0.46) & (0.78) & (1.76) & (2.19) & (2.75) & (0.99) & (0.57) \\
+			sample of stores &   &   &   &   &   &   &   &   \\
+			5. Change in mean FTE & -2.68 & 0.57 & 3.26 & -2.34 & -2.16 & -3.66 & 1.32 & 1.5 \\
+			employment, setting & (1.24) & (0.46) & (0.78) & (1.76) & (2.19) & (2.74) & (0.98) & (0.55) \\
+			FTE at temporarily &   &   &   &   &   &   &   &   \\
+			closed stores to 0 &   &   &   &   &   &   &   &   \\
+			\bottomrule
+
+		\end{tabular}
+			\footnotesize \textit{Notes:} Standard errors are shown in parentheses. The sample consists of all stores with available data on employment. FTE (full-time-equivalent) employment counts each part-time worker as half a full-time worker. Row 1-3 contain the full sample. Row 4 includes observations for which at the point of the suervey data for "nregisters11" is missing. Row 5 includes closed stores.	
+	\end{table}		
+	}
+	
+\end{center}
+
+Interpretation: Table 3 shows that in NJ stores employment increased after the minimum wage raise, whereas in PA employment decreased. Moreover, in NJ and PA stores that had no intial wage gap (ie unaffacted by the minimum wage) employed less workers (overall decrease of employment). Arguably this decrease was a result of the economic recession of that time. For stores having a intial wage gap, employment increased.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\end{document}
